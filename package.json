@@ -1,0 +1,19 @@
+{
+  "name": "webpack-vue2-spa",
+  "version": "1.0.0",
+  "description": "webpack+vue2+vue-router2构单页面(SPA)应用",
+  "main": "index.js",
+  "scripts": {
+    "test": "Test success!"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YJZhen/webpack-vue2-spa.git"
+  },
+  "author": "YJ",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YJZhen/webpack-vue2-spa/issues"
+  },
+  "homepage": "https://github.com/YJZhen/webpack-vue2-spa#readme"
+}
