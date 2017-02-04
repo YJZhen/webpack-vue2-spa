@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/YJZhen/webpack-vue2-spa/issues"
   },
-  "homepage": "https://github.com/YJZhen/webpack-vue2-spa#readme"
+  "homepage": "https://github.com/YJZhen/webpack-vue2-spa#readme",
+  "devDependencies": {
+    "extract-text-webpack-plugin": "^1.0.1",
+    "vue-loader": "^10.3.0",
+    "webpack": "^2.2.1"
+  }
 }
