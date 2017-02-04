@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/YJZhen/webpack-vue2-spa#readme",
   "devDependencies": {
+    "css-loader": "^0.26.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "vue-loader": "^10.3.0",
     "webpack": "^2.2.1"
