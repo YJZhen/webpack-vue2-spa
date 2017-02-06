@@ -4,16 +4,28 @@ const path=require('path');
 const webpack=require('webpack');
 //构建页面资源的插件
 const extractText=require('extract-text-webpack-plugin');
+var project_publicPath = process.env.NODE_ENV === 'production' ? __dirname + '/dist/' : '/dist/';
 //因为我们是vue.js的应用，把各个.vue后缀的组件当做一个页面，所以引入这个可以编译这些.vue文件
 const vue = require("vue-loader");
+//
+// var config = require('../config');
+// var utils = require('./src/utils');
+var env = process.env.NODE_ENV;
+// check env & config/index.js to decide weither to enable CSS Sourcemaps for the
+// various preprocessor loaders added to vue-loader at the end of this file
+// var cssSourceMapDev = (env === 'development' && config.dev.cssSourceMap);
+// var cssSourceMapProd = (env === 'production' && config.build.productionSourceMap);
+// var useCssSourceMap = cssSourceMapDev || cssSourceMapProd;
+var useCssSourceMap=env;
 
 const config={
     entry:[path.resolve(__dirname,'src/main.js')],
     output:{
         path:path.resolve(__dirname,'dist'),
         filename:'build.js',
-        publicPath:__dirname+'/dist/',
-        // chunkFilename:'[id].build.js?[chunkhash]'
+        // publicPath:__dirname+'/dist/',
+        publicPath : project_publicPath,
+        // chunkFilename:'build.js?[chunkhash]'
     },
     module:{
         loaders:[
@@ -47,7 +59,7 @@ const config={
     babel: {
         // 告诉babel你要解析的语言
         presets: ['es2015'],
-        plugins: ["transform-runtime"]
+        // plugins: ["transform-runtime"]
     },
     resolve: {
         extensions: ['', '.js', '.vue'],
@@ -63,7 +75,8 @@ const config={
     },
     plugins:[
         //将公用JS提到common.js文件中
-        new webpack.optimize.CommonsChunkPlugin('common.js'),
+        // new webpack.optimize.CommonsChunkPlugin('common.js'),
+
         // new webpack.LoaderOptionsPlugin({
         //     test: /\.css$/, // optionally pass test, include and exclude, default affects all loaders
         //                     // 可以传入 test、include 和 exclude，默认会影响所有的 loader
@@ -74,12 +87,25 @@ const config={
         //     }
         // }),
         //将样式合并到style.css文件中
-        // new extractText('style.css',{
-        //     allChunks: true
-        // })
+        new extractText('style.css',{
+            allChunks: true
+        }),
+
         //使用ProvidePlugin加载使用频率高的依赖库
         // new webpack.ProvidePlugin({
         //     $:'webpack-zepto'
+        // })
+        ///
+        // ...
+        // new webpack.DefinePlugin({
+        //     'process.env': {
+        //         NODE_ENV: '"production"'
+        //     }
+        // }),
+        // new webpack.optimize.UglifyJsPlugin({
+        //     compress: {
+        //         warnings: false
+        //     }
         // })
     ]
 }
